@@ -1,20 +1,20 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <v-main-wrapper />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import vMainWrapper from "./components/v-main-wrapper.vue"
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    vMainWrapper
   }
 }
 </script>
+
 
 <style>
 #app {
@@ -23,6 +23,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
