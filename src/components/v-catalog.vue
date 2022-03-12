@@ -1,6 +1,10 @@
 <template>
   <div class="v-catalog">
-    <v-catalog-item></v-catalog-item>
+    <h1>Каталог</h1>
+    <div class="v-item-in-catalog">
+      <v-catalog-item />
+      <v-catalog-item />
+    </div>
   </div>
 </template>
 
@@ -20,5 +24,10 @@ export default{
 }
 </script>
 
-<style scoped>
+<style>
+  .v-item-in-catalog {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 </style>
