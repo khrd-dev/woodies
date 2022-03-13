@@ -1,6 +1,6 @@
 <template>
   <div class="v-catalog-item">
-    <img src="src/assets/img/logo.jpg" alt="icon">
+    <img class="imgItem" src="../assets/img/table.png" alt="icon">
     <p>Позиция 1</p>
     <p>Цена: 100$</p>
     <button>Добавить в корзину</button>
@@ -26,5 +26,9 @@ export default{
     box-shadow: 0 0 8px 0 gray;
     padding: 8px;
     margin-bottom: 16px;
+  }
+  .imgItem {
+    width: 100px;
+    height: 100px;
   }
 </style>

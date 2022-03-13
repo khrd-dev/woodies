@@ -1,17 +1,19 @@
 <template>
   <div class="v-main-wrapper">
-    <div class="nav">
+    <div class="logoNav"> 
       <div class="logo">
         <img height="30" align= center src="../assets/img/logo.png" alt="Лого">
         WOODIES
       </div>
-      <a href="/">Главная</a>
-      <a href="/about">О нас</a>
-      <a href="/todo">Реализация</a>
-      <a href="/catalog">Каталог</a>
-      <a href="/auth">Войти</a>
-      <a href="/cart">Корзина</a>
-    </div>
+      <div class="nav">
+        <a href="/">Главная</a>
+        <a href="/about">О нас</a>
+        <a href="/todo">Реализация</a>
+        <a href="/catalog">Каталог</a>
+        <a href="/auth">Войти</a>
+        <a href="/cart">Корзина</a>
+      </div>
+    </div> 
     <!-- <v-auth></v-auth>
     <v-about-us></v-about-us>
     <v-cart></v-cart> -->
@@ -30,9 +32,8 @@
         </div>      
       </div>
       <hr>
-      <div>
-        <div class="footerInfo">  
-          <div>
+      <div class="logoFooterInfo">
+        <div class="logoInfo">
             <div class="logo">
               <img height="30" align= center src="../assets/img/logo.png" alt="Лого">
               WOODIES
@@ -40,7 +41,8 @@
             <p>(123)123123123</p>
             <p>woodies@gmail.com</p>
             <p>Jakarta, Indonesia</p>
-          </div>
+        </div>
+        <div class="footerInfo">  
           <div>
             <h4>Продукция</h4>
             <p>Розница</p>
@@ -104,9 +106,9 @@ export default{
 .v-main-wrapper {
   justify-content: center;
   align-items: center;
-  min-width: 1152px;
   margin: 0 auto;
   background: white;
+  flex-wrap: wrap;
 }
 .logo {
   font-family: 'Nunito';
@@ -119,8 +121,16 @@ export default{
 }
 .nav {
   display: flex;
-  padding-left: 100px;
-  padding-right: 100px;
+  flex: 1 auto;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.logoNav {
+  display: flex;
+  padding-left: 10%;
+  padding-right: 10%;
   padding-top: 20px;
   justify-content: space-between;
   align-items: center;
@@ -147,32 +157,71 @@ a:focus {
 }
 .footerInfo {
   display: flex;
+  flex: 1 auto;
+  flex-wrap: wrap;
   flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+.logoFooterInfo {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 10%;
+  padding-right: 10%;
   align-items: flex-end;
   background: linear-gradient(to top, transparent, rgb(255, 255, 255)),
     url("../assets/img/bgfooter.png");
 }
 .img2 {
-  width: 333px;
-  height: 263px;
-  background: linear-gradient(to top, transparent, rgb(255, 255, 255)),
-    url("../assets/img/table2.png");
-  background-size: 333px 263px;
+  display: none;
+}
+@media (min-width: 1080px) {
+  .img2 {
+    display: block;
+    width: 333px;
+    height: 263px;
+    background: linear-gradient(to top, transparent, rgb(255, 255, 255)),
+      url("../assets/img/table2.png");
+    background-size: 333px 263px;
+  }
+}
+@media (max-width: 800px) {
+  .logoNav {
+    flex-direction: column;
+    flex: 1 auto;
+  }
+  .nav a {
+    flex: 1 auto;
+    margin: 1%;
+  }
+  .logoFooterInfo {
+    flex: 1 auto;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footerInfo div {
+    padding-right: 20px;
+    padding-left: 20px;;
+  }
 }
 .footer p {
   color: #8D8D8D;
   font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.footer h4 {
+  margin-bottom: 17px;
 }
 .subscribe {
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 10%;
+  padding-right: 10%;
   display: flex;
   justify-content: space-between;
   text-align: left;
   align-items: center;
+  flex-wrap: wrap;
 }
 .p1 {
   font-family: 'Nunito';
@@ -191,7 +240,7 @@ a:focus {
   margin-top: 0;
 }
 input {
-  width: 328px;
+  width: 59%;
   height: 40px;
   background: #FFFFFF;
   border: 1px solid #DAA520;
