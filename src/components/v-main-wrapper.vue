@@ -2,7 +2,7 @@
   <div class="v-main-wrapper">
     <div class="logoNav"> 
       <div class="logo">
-        <img height="30" align= center src="../assets/img/logo.png" alt="Лого">
+        <img height="30" align=center src="../assets/img/logo.png" alt="Лого">
         WOODIES
       </div>
       <div class="nav">
@@ -14,10 +14,10 @@
         <a href="/cart">Корзина</a>
       </div>
     </div> 
-    <!-- <v-auth></v-auth>
-    <v-about-us></v-about-us>
-    <v-cart></v-cart> -->
-    <v-catalog></v-catalog>
+     <v-auth></v-auth>
+    <!--<v-about-us></v-about-us>
+    <v-cart></v-cart>
+    <v-catalog></v-catalog> -->
     <div class="footer">
       <div class="subscribe">
         <div>
@@ -76,18 +76,18 @@
 </template>
 
 <script>
-  // import vAuth from "./v-auth.vue"
+  import vAuth from "./v-auth.vue"
   // import vAboutUs from "./v-about-us.vue"
   // import vCart from "./v-cart.vue"
-  import vCatalog from "./v-catalog.vue"
+  //import vCatalog from "./v-catalog.vue"
 
 export default{
   name: "v-main-wrapper",
   components: {
-    // vAuth,
+    vAuth,
     // vAboutUs,
     // vCart,
-    vCatalog,
+    //vCatalog,
   },
   props: {},
   data(){
@@ -101,14 +101,18 @@ export default{
 </script>
 
 <style >
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap');
 .v-main-wrapper {
-  justify-content: center;
-  align-items: center;
+  justify-content: center;  /* ерунда*/
+  align-items: center;      /* ерунда*/
   margin: 0 auto;
   background: white;
-  flex-wrap: wrap;
+  flex-wrap: wrap;          /* ерунда*/
+  background: no-repeat url(../assets/img/logoBG.png);
+  background-position: 30% 75%;;
+  background-size: 50%;
 }
 .logo {
   font-family: 'Nunito';
@@ -129,9 +133,9 @@ export default{
 }
 .logoNav {
   display: flex;
+  padding-top: 20px;
   padding-left: 10%;
   padding-right: 10%;
-  padding-top: 20px;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
@@ -241,11 +245,14 @@ a:focus {
 }
 input {
   width: 59%;
+  min-width: 220px;
   height: 40px;
-  background: #FFFFFF;
+  background: #ffffffd2;
   border: 1px solid #DAA520;
   border-radius: 6px;
   box-sizing: border-box;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 button {
   width: 120px;
@@ -255,5 +262,7 @@ button {
   border-radius: 6px;
   box-shadow: none;
   border: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 </style>
