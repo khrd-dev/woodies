@@ -1,6 +1,13 @@
 <template>
   <div class="v-catalog">
-    <h1>Каталог</h1>
+    <section class="header">
+      <div class="headerWordQues">
+        <img height="30" align=center src="../assets/img/logobw.png" alt="ЛогоЧБ">
+        <div>Что мы имеем</div>
+      </div>
+      <img width="10%" src="../assets/img/Line.png" alt="-----">
+      <div class="headerWord">КАТАЛОГ</div>
+    </section>
     <div class="v-item-in-catalog">
       <v-catalog-item />
       <v-catalog-item />

@@ -1,27 +1,45 @@
 <template>
   <div class="v-auth">
-    <section class="headerAuth">
+    <section class="header">
       <div class="headerWordQues">
         <img height="30" align=center src="../assets/img/logobw.png" alt="ЛогоЧБ">
         <div>Мы знакомы?</div>
       </div>
-      <img width="50%" src="../assets/img/Line.png" alt="-----">
-      <div class="headerWordAuth">АВТОРИЗАЦИЯ</div>
+      <img width="10%" src="../assets/img/Line.png" alt="-----">
+      <div class="headerWord">АВТОРИЗАЦИЯ</div>
     </section>
     <section class="regAuth">
       <div class="bgAuth">
-        <div class="inputAuth">
-          <input type="text" class="inputAuthEmail" placeholder="Введи email">
-          <input type="text" class="inputAuthPass" placeholder="Введи пароль">
+        <div class="inputAuth inputs">
+          <div>
+            <input type="email" class="inputAuthEmail" placeholder="">
+            <label for="email">e-mail</label>
+          </div>
+          <div>
+            <input type="password" class="inputAuthPass" placeholder="">
+            <label for="password">Пароль</label>
+          </div>
           <button>Войти</button>
         </div>
       </div>
       <div class="bgReg">
-        <div class="inputReg">
-          <input type="text" class="inputRegName" placeholder="Введи имя">
-          <input type="text" class="inputRegPass" placeholder="Введи пароль">
-          <input type="text" class="inputRegPassDbl" placeholder="Введи пароль еще раз">
-          <input type="text" class="inputRegEmail" placeholder="Введи email">
+        <div class="inputReg inputs">
+          <div>
+            <input type="name" class="inputRegName" placeholder="">
+            <label for="name">Имя</label>
+          </div>
+          <div>
+            <input type="password" class="inputRegPass" placeholder="">
+            <label for="password">Пароль</label>
+          </div>
+          <div>
+            <input type="password" class="inputRegPassDbl" placeholder="">
+            <label for="password">Пароль еще раз</label>
+          </div>
+          <div>   
+            <input type="email" class="inputRegEmail" placeholder="">
+            <label for="email">e-mail</label>
+          </div>
           <button>Регистрация</button>
         </div>
       </div>
@@ -45,32 +63,7 @@ export default{
 </script>
 
 <style>
-.headerAuth {
-  display: flex;
-  justify-content: space-between;
-  padding-left: 10%;
-  padding-right: 10%;
-  align-items: center;
-}
-.headerWordQues {
-  display: flex;
-  align-items: center;
-  font-family: 'Nunito';
-  font-weight: 700;
-  font-size: 36px;
-  line-height: 49px;
-  color: #3E3F43;
-}
-.headerWordQues img {
-  margin-right: 10px;
-}
-.headerWordAuth {
-  font-family: 'Nunito';
-  font-weight: 800;
-  font-size: 72px;
-  line-height: 98px;
-  color: rgba(34, 34, 34, 0.1);
-}
+
 .regAuth {
   display: flex;
   justify-content: space-between;
@@ -118,21 +111,6 @@ export default{
   margin-left: 55%;
 }
 
-@media (min-width: 280px) and (max-width: 1024px) {
-  .headerWordQues {
-    display: none;
-  }
-  .headerAuth img {
-    display: none;
-  }
-  .headerAuth {
-    display: block;
-  }
-  .headerWordAuth {
-    font-size: calc(18px + (72 - 18) * ( (100vw - 280px) / ( 1024 - 480) ));
-  }
-}
-
 @media (max-width: 800px) {
   .regAuth {
     flex-direction: column;
@@ -148,5 +126,4 @@ export default{
     width: 100%
   }
 }
-
 </style>

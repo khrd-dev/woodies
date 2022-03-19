@@ -26,6 +26,7 @@ export default{
     box-shadow: 0 0 8px 0 gray;
     padding: 8px;
     margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.753);
   }
   .imgItem {
     width: 100px;
