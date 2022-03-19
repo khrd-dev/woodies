@@ -1,12 +1,11 @@
 <template>
-  <div class="v-about-us">
-    <h1>О нас</h1>
+  <div class="v-home">
   </div>
 </template>
 
 <script>
 export default{
-  name: "v-about-us",
+  name: "v-home",
   data(){
     return{}
   },
@@ -15,5 +14,5 @@ export default{
 }
 </script>
 
-<style scoped>
+<style>
 </style>
