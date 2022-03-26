@@ -9,19 +9,19 @@
       <div class="headerWord">КАТАЛОГ</div>
     </section>
     <div class="v-item-in-catalog">
-      <v-catalog-item />
-      <v-catalog-item />
-      <v-catalog-item />
-      <v-catalog-item />
-      <v-catalog-item />
-      <v-catalog-item />
-      
+      <v-catalog-item 
+      v-for="product in PRODUCTS"
+      :key="product.article"
+      :productData="product"
+      @sendArticle="getArticle"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import vCatalogItem from "./v-catalog-item.vue"
+import {mapActions, mapGetters} from 'vuex'
 
 export default{
   name: "v-catalog",
@@ -29,9 +29,23 @@ export default{
     vCatalogItem,
   },
   data(){
-    return{}
+    return {}
   },
-  methods:{
+  computed: {
+    ...mapGetters([
+      'PRODUCTS'
+    ])
+  },
+  methods: {
+    getArticle(data) {
+      console.log(data)
+    },
+    ...mapActions([
+      'GET_PRODUCTS_FROM_API'
+    ]),
+  },
+  mounted() {
+    this.GET_PRODUCTS_FROM_API()
   }
 }
 </script>

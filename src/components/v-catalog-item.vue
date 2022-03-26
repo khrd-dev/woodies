@@ -1,9 +1,9 @@
 <template>
   <div class="v-catalog-item">
-    <img class="imgItem" src="../assets/img/table.png" alt="icon">
-    <p>Позиция 1</p>
-    <p>Цена: 100$</p>
-    <button>Добавить в корзину</button>
+    <img class="imgItem" :src=" require('../assets/img/' + productData.image) " alt="img">
+    <p>{{productData.name}}</p>
+    <p>Цена: {{productData.price}} ₽</p>
+    <button @click="sendItemToCart">Добавить в корзину</button>
   </div>
 </template>
 
@@ -11,10 +11,21 @@
 
 export default{
   name: "v-catalog-item",
+  props: {
+    productData: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  },
   data(){
     return{}
   },
   methods:{
+    sendItemToCart() {
+      this.$emit('sendArticle', this.productData.article)
+    }
   }
 }
 </script>

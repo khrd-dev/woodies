@@ -1,7 +1,7 @@
 <template>
   <div class="v-main-wrapper">
     <div class="logoNav"> 
-      <div class="logo">
+      <div @click="toHome" class="logo">
         <img height="30" align=center src="../assets/img/logo.png" alt="Лого">
         WOODIES
       </div>
@@ -25,13 +25,13 @@
             и горячих предложений.
           </h3>  
         </div>  
-        <div class="inputs subscrInputs">
+        <form class="inputs subscrInputs">
           <div>
-            <input type="email" placeholder="">
-            <label for="email">e-mail</label>
+            <input required="required" id="emailSubscr" type="text" placeholder="">
+            <label for="emailSubscr">e-mail</label>
           </div>
           <button class="subscr">Подписаться</button>
-        </div>      
+        </form>      
       </div>
       <hr>
       <div class="logoFooterInfo">
@@ -79,6 +79,7 @@
 
 <script>
   import vAuth from "./v-auth.vue"
+  import vReg from "./v-reg.vue"
   import vAboutUs from "./v-about-us.vue"
   import vCart from "./v-cart.vue"
   import vCatalog from "./v-catalog.vue"
@@ -88,6 +89,7 @@ export default{
   name: "v-main-wrapper",
   components: {
     vAuth,
+    vReg,
     vAboutUs,
     vCart,
     vCatalog,
@@ -105,7 +107,13 @@ export default{
       return this.$route.path
     }
   },
-  methods: {},
+  methods: {
+    toHome() {
+      if (this.pageURL !== '/') {
+        this.$router.push('/')
+      } 
+    }
+  },
   watch: {},
   
 }
@@ -133,6 +141,7 @@ export default{
   line-height: 33px;
   letter-spacing: 0.25em;
   color: #3E3F43;
+  cursor: pointer;
 }
 .nav {
   display: flex;
@@ -160,8 +169,13 @@ export default{
   text-decoration: none;
   color: #3E3F43;
 }
+.link {
+  font-family: 'Nunito';
+  text-decoration: none;
+  color: #DAA520;
+}
 a:hover {
-  font-size: 22px;
+  font-size: 18px;
 }
 a:focus {
   color: #DAA520;
@@ -303,7 +317,7 @@ a:focus {
 input {
   width: 100%;
   min-width: 150px;
-  height: 40px;
+  height: 60px;
   background: #ffffffd2;
   border: 1px solid #DAA520;
   border-radius: 6px;
@@ -311,9 +325,13 @@ input {
   margin-top: 5px;
   margin-bottom: 5px;
   font-family: 'Nunito';
-  color: #8d6500;
-  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 150%;
+  color: #a14646;
+  padding: 1rem 1rem 0.2rem 1rem;
 }
+
 input:focus {
   border-color: #ffb700;
   outline: 0;
@@ -321,22 +339,45 @@ input:focus {
 }
 .inputs div {
   display: flex;
-  width: 59%;
+  width: 80%;
   align-items: flex-start;
   flex-direction: column-reverse;
 }
 .inputs div label {
   padding-left: 1rem;
+  font-family: "Nunito";
+  font-size: 150%;
   color: #bdbdbd;
-  transform: translateY(2.2rem);
+  transform: translateY(3.2rem);
   transform-origin: left top;
   cursor: text;
   transition: all 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80%;
 }
-.inputs div input:focus ~ label {
+.inputs div input:focus ~ label,
+.inputs div input:valid ~ label {
   padding: 0;
   color: #212121;
-  transform: translateY(1.6rem) scale(0.6);
+  transform: translateY(2.5rem) translateX(0.3rem) scale(0.6);
+  opacity: .5;
+}
+.invalid {
+  border-color: rgba(255, 0, 0, 0.808);
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.342); 
+}
+.invalid:focus {
+  border-color: rgba(255, 0, 0, 0.808);
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.342); 
+}
+.inputs small {
+  color: red;
+  transform: translateY(7.0rem);
+  height: 0.1px;
 }
 button {
   min-width: 120px;

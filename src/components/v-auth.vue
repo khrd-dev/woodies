@@ -9,39 +9,52 @@
       <div class="headerWord">АВТОРИЗАЦИЯ</div>
     </section>
     <section class="regAuth">
-      <div class="bgAuth">
+      <form class="bgAuth" @submit.prevent="submitHandler">
         <div class="inputAuth inputs">
           <div>
-            <input type="email" class="inputAuthEmail" placeholder="">
-            <label for="email">e-mail</label>
+            <input  
+              required="required"
+              id="emailAuth" 
+              type="text" 
+              class="inputAuthEmail" 
+              placeholder=""
+              v-model.trim="email"
+              :class="{invalid: ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email)}">
+            <label for="emailAuth">e-mail</label>
+            <small
+              v-if="$v.email.$dirty && !$v.email.required">
+              Поле не должно быть пустым
+            </small>
+            <small
+              v-else-if="$v.email.$dirty && !$v.email.email">
+              Не корректный e-mail
+            </small>
           </div>
           <div>
-            <input type="password" class="inputAuthPass" placeholder="">
-            <label for="password">Пароль</label>
+            <input 
+              required="required" 
+              id="passAuth" 
+              type="text" 
+              class="inputAuthPass" 
+              placeholder=""
+              v-model.trim="password"
+              :class="{invalid: ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}">
+            <label for="passAuth">Пароль</label>
+            <small
+              v-if="$v.password.$dirty && !$v.password.required">
+              Введите пароль
+            </small>
+            <small
+              v-else-if="$v.password.$dirty && !$v.password.minLength">
+              Не менее {{$v.password.$params.minLength.min}} символов
+            </small>
           </div>
-          <button>Войти</button>
+          <button class="reglogIn_btn" type="submit" >Войти</button>
+          <label for="reglogIn_btn" >Нет аккаунта? <router-link class="link" to="/reg">ЗАРЕГИСТРИРОВАТЬСЯ</router-link></label>
         </div>
-      </div>
-      <div class="bgReg">
-        <div class="inputReg inputs">
-          <div>
-            <input type="name" class="inputRegName" placeholder="">
-            <label for="name">Имя</label>
-          </div>
-          <div>
-            <input type="password" class="inputRegPass" placeholder="">
-            <label for="password">Пароль</label>
-          </div>
-          <div>
-            <input type="password" class="inputRegPassDbl" placeholder="">
-            <label for="password">Пароль еще раз</label>
-          </div>
-          <div>   
-            <input type="email" class="inputRegEmail" placeholder="">
-            <label for="email">e-mail</label>
-          </div>
-          <button>Регистрация</button>
-        </div>
+      </form>
+      <div class="logoBg">
+        <img src="../assets/img/logoauth.png" alt="">
       </div>
     </section>
     <section class="bgimg">
@@ -52,12 +65,33 @@
 </template>
 
 <script>
+import {email, required, minLength} from 'vuelidate/lib/validators'
+
 export default{
   name: "v-auth",
-  data(){
-    return{}
+  data() {
+    return{
+      email: '',
+      password: ''
+    }
+  },
+  validations: {
+      email: {email, required},
+      password: {required, minLength: minLength(8)}
   },
   methods:{
+    submitHandler() {
+      if (this.$v.$invalid) {
+        this.$v.$touch()
+        return
+      }
+      const formData = {
+        email: this.email,
+        password: this.password
+      }
+      console.log(formData)
+      this.$router.push('/')
+    }
   }
 }
 </script>
@@ -69,18 +103,21 @@ export default{
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: flex-start;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 .bgAuth {
   width: 45%;
-  background-image: url(../assets/img/lftbg.png);
-  background-size: 100% 100%;
   margin-right: 2%;
 }
-.bgReg {
+.logoBg img {
+  margin: 40px auto;
+  height: auto;
+  width: 70%;
+}
+.logoBg {
+  margin: 0 auto;
   width: 45%;
-  background-image: url(../assets/img/rtbg.png);
-  background-size: 100% 100%;
-  margin-left: 2%;
 }
 .inputAuth {
   display: flex;
@@ -110,6 +147,10 @@ export default{
   height: auto;
   margin-left: 55%;
 }
+.reglogIn_btn {
+  margin-top: 30px;
+}
+
 
 @media (max-width: 800px) {
   .regAuth {
