@@ -2,7 +2,7 @@
     <div class="v-home">
         <div class="v-home_content">
             <p>В поиске <b>деревянной мебели</b> для дома?</p>
-            <h3>Мы знаем о ней все.</h3>
+            <h3>Мы знаем о ней всё.</h3>
             <button @click="toCatalog">Посмотреть каталог</button>
         </div>
         <div class="v-home_table"></div>

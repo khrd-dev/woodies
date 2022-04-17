@@ -8,8 +8,16 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         products: [],
+        error: null,
     },
     mutations: {
+        setError(state, error) {
+            state.error = error;
+        },
+        clearError(state) {
+            state.error = null;
+        },
+
         SET_PRODUCTS_TO_STATE: (state, products) => {
             state.products = products;
         },
@@ -18,7 +26,7 @@ export default new Vuex.Store({
         GET_PRODUCTS_FROM_API({ commit }) {
             return axios("https://wood-74588-default-rtdb.firebaseio.com/", {
                 method: "GET",
-                mode: "cors",
+                // mode: "cors",
             })
                 .then((products) => {
                     commit("SET_PRODUCTS_TO_STATE", products);
@@ -34,6 +42,8 @@ export default new Vuex.Store({
         auth,
     },
     getters: {
+        error: (s) => s.error,
+
         PRODUCTS(state) {
             return state.products;
         },

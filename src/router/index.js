@@ -7,31 +7,31 @@ const routes = [
     {
         path: "/",
         name: "home",
-        meta: { layout: "home" },
+        meta: { layout: "vHome" },
         component: () => import("../pages/v-home.vue"),
     },
     {
         path: "/auth",
         name: "auth",
-        meta: { layout: "auth" },
+        meta: { layout: "vAuth" },
         component: () => import("../pages/v-auth.vue"),
     },
     {
         path: "/reg",
         name: "reg",
-        meta: { layout: "reg" },
+        meta: { layout: "vReg" },
         component: () => import("../pages/v-reg.vue"),
     },
     {
         path: "/catalog",
         name: "catalog",
-        meta: { layout: "catalog" },
+        meta: { layout: "vCatalog" },
         component: () => import("../pages/v-catalog.vue"),
     },
     {
         path: "/cart",
         name: "cart",
-        meta: { layout: "cart" },
+        meta: { layout: "vCart" },
         component: () => import("../pages/v-cart.vue"),
     },
 ];

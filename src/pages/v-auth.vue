@@ -108,6 +108,7 @@ export default {
             password: "",
         };
     },
+    computed: {},
     validations: {
         email: { email, required },
         password: { required, minLength: minLength(8) },
@@ -126,9 +127,7 @@ export default {
             try {
                 await this.$store.dispatch("login", formData);
                 this.$router.push("/");
-            } catch (e) {
-                this.$router.push("/reg");
-            }
+            } catch (e) {}
         },
     },
 };

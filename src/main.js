@@ -3,13 +3,16 @@ import App from "./App.vue";
 import Vuelidate from "vuelidate";
 import router from "./router";
 import store from "./store";
+import "materialize-css/dist/js/materialize.min";
+import messagePlugin from "./utils/message.plugin";
 
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-// import './assets/styles/styles.scss'
+// import "./assets/styles/styles.scss";
 
 Vue.config.productionTip = false;
 
+Vue.use(messagePlugin);
 Vue.use(Vuelidate);
 
 const firebaseConfig = {

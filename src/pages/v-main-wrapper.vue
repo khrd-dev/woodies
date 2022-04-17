@@ -132,6 +132,7 @@ import vAboutUs from "./v-about-us.vue";
 import vCart from "./v-cart.vue";
 import vCatalog from "./v-catalog.vue";
 import vHome from "./v-home.vue";
+import messages from "../utils/messages";
 
 export default {
     name: "v-main-wrapper",
@@ -148,8 +149,11 @@ export default {
         return {};
     },
     computed: {
+        error() {
+            return this.$store.getters.error;
+        },
         layout() {
-            return this.$route.meta.layout || "home";
+            return this.$route.meta.layout;
         },
         pageURL() {
             return this.$route.path;
@@ -163,9 +167,14 @@ export default {
         },
         async logOut() {
             await this.$store.dispatch("logOut");
+            this.$message("Вы вышли из личного кабинета");
         },
     },
-    watch: {},
+    watch: {
+        error(fbError) {
+            this.$error(messages[fbError.code] || "Что-то пошло не так");
+        },
+    },
 };
 </script>
 
@@ -173,6 +182,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap");
+/* @import "~materialize-css/dist/css/materialize.min.css"; */
 .v-main-wrapper {
     justify-content: center; /* ерунда*/
     align-items: center; /* ерунда*/
@@ -458,5 +468,31 @@ button:focus {
 }
 button:active {
     background: rgb(185, 141, 30);
+}
+.toast {
+    display: block;
+    position: fixed;
+    z-index: 10000;
+    border-radius: 10px;
+    top: 35px;
+    width: auto;
+    margin-top: 10px;
+    max-width: 100%;
+    height: auto;
+    min-height: 50px;
+    line-height: 1.5em;
+    background-color: rgba(185, 141, 30, 0.822);
+    padding: 10px 25px;
+    font-family: "Nunito";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0.1em;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: default;
 }
 </style>

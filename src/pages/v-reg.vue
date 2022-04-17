@@ -127,11 +127,10 @@ export default {
 
             try {
                 await this.$store.dispatch("register", formData);
+                this.$router.push("/");
             } catch (e) {
                 throw e;
             }
-
-            this.$router.push("/");
         },
     },
 };
