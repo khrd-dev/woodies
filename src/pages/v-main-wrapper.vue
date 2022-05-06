@@ -37,18 +37,19 @@
                 >
                 <router-link
                     class="navLink"
-                    :class="{ selected: this.pageURL == '/auth' }"
-                    to="/auth"
-                    >Войти</router-link
-                >
-                <router-link
-                    class="navLink"
                     :class="{ selected: this.pageURL == '/cart' }"
                     to="/cart"
                     >Корзина</router-link
                 >
-                <p class="navLink">USERNAME</p>
-                <p @click="logOut()" class="navLink link">Выйти</p>
+                <router-link
+                    v-if="!name"
+                    class="navLink link"
+                    :class="{ selected: this.pageURL == '/auth' }"
+                    to="/auth"
+                    >Войти</router-link
+                >
+                <p class="navLink">{{ name }}</p>
+                <p v-if="name" @click="logOut()" class="navLink link">Выйти</p>
             </div>
         </div>
         <component :is="layout">
@@ -148,11 +149,7 @@ export default {
     data() {
         return {};
     },
-    async mounted() {
-        if (this.$store.getters.info) {
-            await this.$store.dispatch("fetchInfo");
-        }
-    },
+
     computed: {
         error() {
             return this.$store.getters.error;
@@ -162,6 +159,9 @@ export default {
         },
         pageURL() {
             return this.$route.path;
+        },
+        name() {
+            return this.$store.getters.info.name;
         },
     },
     methods: {

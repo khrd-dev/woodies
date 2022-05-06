@@ -15,6 +15,11 @@ export default {
     data() {
         return {};
     },
+    async mounted() {
+        if (!Object.keys(this.$store.getters.info).length) {
+            await this.$store.dispatch("fetchInfo");
+        }
+    },
     methods: {
         toCatalog() {
             this.$router.push("catalog");

@@ -2,7 +2,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import auth from "./auth";
-import info from "./info";
 import { getDatabase, ref, get } from "firebase/database";
 
 Vue.use(Vuex);
@@ -22,6 +21,9 @@ export default new Vuex.Store({
         },
         setProducts(state, productsData) {
             state.products = productsData;
+        },
+        setInfo(state, infoData) {
+            state.info = infoData;
         },
         clearInfo(state) {
             state.info = {};
@@ -43,13 +45,32 @@ export default new Vuex.Store({
                 throw e;
             }
         },
+        async fetchInfo({ dispatch, commit }) {
+            const uid = await dispatch("getUid");
+            if (uid !== null) {
+                try {
+                    const db = getDatabase();
+                    const infoRef = ref(db, `/users/${uid}/info/`);
+
+                    let infoData = {};
+                    await get(infoRef).then((snapshot) => {
+                        infoData = snapshot.val();
+                    });
+
+                    commit("setInfo", infoData);
+                } catch (e) {
+                    commit("setError", e);
+                    throw e;
+                }
+            }
+        },
     },
     modules: {
         auth,
-        info,
     },
     getters: {
         error: (s) => s.error,
         products: (s) => s.products,
+        info: (s) => s.info,
     },
 });

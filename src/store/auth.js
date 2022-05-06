@@ -8,7 +8,7 @@ import { getDatabase, ref, set } from "firebase/database";
 
 export default {
     actions: {
-        async login({ dispatch, commit }, { email, password }) {
+        async login({ commit }, { email, password }) {
             try {
                 const auth = getAuth();
                 await signInWithEmailAndPassword(auth, email, password);
