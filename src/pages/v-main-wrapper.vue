@@ -148,6 +148,11 @@ export default {
     data() {
         return {};
     },
+    async mounted() {
+        if (this.$store.getters.info) {
+            await this.$store.dispatch("fetchInfo");
+        }
+    },
     computed: {
         error() {
             return this.$store.getters.error;
@@ -172,7 +177,10 @@ export default {
     },
     watch: {
         error(fbError) {
-            this.$error(messages[fbError.code] || "Что-то пошло не так");
+            this.$error(
+                messages[fbError.code] ||
+                    `Что-то пошло не так. Код ошибки: ${fbError.code}`
+            );
         },
     },
 };

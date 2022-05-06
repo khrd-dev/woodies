@@ -2,7 +2,7 @@
     <div class="v-catalog-item">
         <img
             class="imgItem"
-            :src="require('../assets/img/' + productData.image)"
+            :src="require('../assets/img/products/' + productData.image)"
             alt="img"
         />
         <p>{{ productData.name }}</p>

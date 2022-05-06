@@ -17,9 +17,10 @@ export default {
                 throw e;
             }
         },
-        async logOut() {
+        async logOut({ commit }) {
             const auth = getAuth();
             await signOut(auth);
+            commit("clearInfo");
         },
         async register({ dispatch, commit }, { email, password, name }) {
             try {

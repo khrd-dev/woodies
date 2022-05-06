@@ -15,7 +15,7 @@
         </section>
         <div class="v-item-in-catalog">
             <v-catalog-item
-                v-for="product in PRODUCTS"
+                v-for="product in products"
                 :key="product.article"
                 :productData="product"
                 @sendArticle="getArticle"
@@ -37,16 +37,16 @@ export default {
         return {};
     },
     computed: {
-        ...mapGetters(["PRODUCTS"]),
+        ...mapGetters(["products"]),
     },
     methods: {
         getArticle(data) {
             console.log(data);
         },
-        ...mapActions(["GET_PRODUCTS_FROM_API"]),
+        ...mapActions(["getProducts"]),
     },
     mounted() {
-        this.GET_PRODUCTS_FROM_API();
+        this.getProducts();
     },
 };
 </script>
