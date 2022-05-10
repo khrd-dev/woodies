@@ -1,5 +1,5 @@
 <template>
-    <div class="v-catalog-item">
+    <div class="v-catalog-item v-item">
         <img
             class="imgItem"
             :src="require('../assets/img/products/' + productData.image)"
@@ -7,7 +7,7 @@
         />
         <p>{{ productData.name }}</p>
         <p>Цена: {{ productData.price }} ₽</p>
-        <button @click="sendItemToCart">Добавить в корзину</button>
+        <button @click="sendItemToCart">В корзину</button>
     </div>
 </template>
 
@@ -27,23 +27,10 @@ export default {
     },
     methods: {
         sendItemToCart() {
-            this.$emit("sendArticle", this.productData.article);
+            this.$emit("sendArticle", this.productData);
         },
     },
 };
 </script>
 
-<style>
-.v-catalog-item {
-    flex-basis: 25%;
-    flex-wrap: wrap;
-    box-shadow: 0 0 8px 0 gray;
-    padding: 8px;
-    margin-bottom: 16px;
-    background-color: rgba(255, 255, 255, 0.753);
-}
-.imgItem {
-    width: 100px;
-    height: 100px;
-}
-</style>
+<style></style>

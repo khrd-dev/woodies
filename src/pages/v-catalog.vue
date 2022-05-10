@@ -13,7 +13,7 @@
             <img width="10%" src="../assets/img/Line.png" alt="-----" />
             <div class="headerWord">КАТАЛОГ</div>
         </section>
-        <div class="v-item-in-catalog">
+        <div class="v-item-in">
             <v-catalog-item
                 v-for="product in products"
                 :key="product.article"
@@ -41,9 +41,9 @@ export default {
     },
     methods: {
         getArticle(data) {
-            console.log(data);
+            this.addToCart(data);
         },
-        ...mapActions(["getProducts"]),
+        ...mapActions(["getProducts", "addToCart"]),
     },
     mounted() {
         this.getProducts();
@@ -52,13 +52,5 @@ export default {
 </script>
 
 <style>
-.v-item-in-catalog {
-    display: flex;
-    padding-left: 10%;
-    padding-right: 10%;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
+
 </style>

@@ -9,6 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         products: [],
+        cart: [],
         error: null,
         info: {},
     },
@@ -28,6 +29,9 @@ export default new Vuex.Store({
         clearInfo(state) {
             state.info = {};
             state.products = [];
+        },
+        setCart(state, itemCartData) {
+            state.cart.push(itemCartData);
         },
     },
     actions: {
@@ -64,6 +68,9 @@ export default new Vuex.Store({
                 }
             }
         },
+        addToCart({ commit }, itemCartData) {
+            commit("setCart", itemCartData);
+        },
     },
     modules: {
         auth,
@@ -71,6 +78,7 @@ export default new Vuex.Store({
     getters: {
         error: (s) => s.error,
         products: (s) => s.products,
+        cart: (s) => s.cart,
         info: (s) => s.info,
     },
 });

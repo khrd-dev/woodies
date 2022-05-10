@@ -503,4 +503,25 @@ button:active {
     justify-content: space-between;
     cursor: default;
 }
+.v-item {
+    flex-basis: 25%;
+    flex-wrap: wrap;
+    box-shadow: 0 0 8px 0 gray;
+    padding: 8px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.753);
+}
+.imgItem {
+    width: 100px;
+    height: 100px;
+}
+.v-item-in {
+    display: flex;
+    padding-left: 10%;
+    padding-right: 10%;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 </style>
