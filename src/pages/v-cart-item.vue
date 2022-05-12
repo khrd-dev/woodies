@@ -7,6 +7,11 @@
         />
         <p>{{ cartData.name }}</p>
         <p>Цена: {{ cartData.price }} ₽</p>
+        <div class="quantity">
+            <p class="link" @click="quantityDown">-</p>
+            <p>{{ cartData.quantity }}</p>
+            <p class="link" @click="cartData.quantity++">+</p>
+        </div>
         <button @click="delItemFromCart">Удалить</button>
     </div>
 </template>
@@ -16,9 +21,9 @@ export default {
     name: "v-cart-item",
     props: {
         cartData: {
-            type: Array,
+            type: Object,
             default() {
-                return [];
+                return {};
             },
         },
     },
@@ -26,8 +31,17 @@ export default {
         return {};
     },
     methods: {
-        delItemFromCart() {},
+        delItemFromCart() {
+            this.$emit("delItemFromCart");
+        },
+        quantityDown() {
+            this.cartData.quantity--;
+            if (this.cartData.quantity <= 0) {
+                this.delItemFromCart();
+            }
+        },
     },
+    mounted() {},
 };
 </script>
 

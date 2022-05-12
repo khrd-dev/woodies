@@ -524,4 +524,15 @@ button:active {
     flex-direction: row;
     flex-wrap: wrap;
 }
+.quantity {
+    margin: 0 30%;
+    width: 40%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.quantity p {
+    font-size: 24px;
+}
 </style>

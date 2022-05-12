@@ -15,10 +15,10 @@
         </section>
         <div class="v-item-in">
             <v-cart-item
-                v-for="item in cart"
+                v-for="(item, index) in cart"
                 :key="item.article"
                 :cartData="item"
-                @sendArticle="getArticle"
+                @delItemFromCart="delItem(index)"
             />
         </div>
     </div>
@@ -26,7 +26,7 @@
 
 <script>
 import vCartItem from "./v-cart-item";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     name: "v-cart",
@@ -39,7 +39,12 @@ export default {
     computed: {
         ...mapGetters(["cart"]),
     },
-    methods: {},
+    methods: {
+        ...mapActions(["delItemFromCart"]),
+        delItem(index) {
+            this.delItemFromCart(index);
+        },
+    },
 };
 </script>
 

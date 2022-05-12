@@ -31,7 +31,24 @@ export default new Vuex.Store({
             state.products = [];
         },
         setCart(state, itemCartData) {
-            state.cart.push(itemCartData);
+            if (state.cart.length) {
+                let itemIsExist = false;
+                state.cart.map((item) => {
+                    if (item.article === itemCartData.article) {
+                        itemIsExist = true;
+                        item.quantity++;
+                    }
+                });
+                if (!itemIsExist) {
+                    state.cart.push(itemCartData);
+                }
+            } else {
+                itemCartData.quantity = 1;
+                state.cart.push(itemCartData);
+            }
+        },
+        delItem(state, index) {
+            state.cart.splice(index, 1);
         },
     },
     actions: {
@@ -70,6 +87,9 @@ export default new Vuex.Store({
         },
         addToCart({ commit }, itemCartData) {
             commit("setCart", itemCartData);
+        },
+        delItemFromCart({ commit }, index) {
+            commit("delItem", index);
         },
     },
     modules: {
